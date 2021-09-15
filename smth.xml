@@ -1,0 +1,6 @@
+<note>
+	<to atribute1='atr1'>Вася</to>
+	<from atribute2='atr2'>Света</from>
+	<heading>Напоминание</heading>
+	<body atribute3='atr3'>Позвони мне завтра!</body>
+</note>
