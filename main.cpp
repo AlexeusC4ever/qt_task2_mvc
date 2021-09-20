@@ -10,30 +10,30 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-//    QTranslator translator;
-//    bool bTranslationLoaded = false;
-//    const char *aszTranslationDirs[] = {
-//        ".",
-//        "./11-translation",
-//        "../translations",
-//        ":/translations",
-//        0
-//    };
+    QTranslator translator;
+    bool bTranslationLoaded = false;
+    const char *aszTranslationDirs[] = {
+        ".",
+        "./qt_mvc",
+        "../translations",
+        ":/translations",
+        0
+    };
 
-//    for(
-//        const char **ppszDir = aszTranslationDirs;
-//        *ppszDir != 0; ++ppszDir
-//    )
-//    {
-//        bTranslationLoaded = translator.load(
-//        QLocale::system(), WRONGSTRING"11-translation", "_", *ppszDir);
-//        if(bTranslationLoaded) break;
-//    }
+    for(
+        const char **ppszDir = aszTranslationDirs;
+        *ppszDir != 0; ++ppszDir
+    )
+    {
+        bTranslationLoaded = translator.load(
+        QLocale::system(), "qt_mvc", "_", *ppszDir);
+        if(bTranslationLoaded) break;
+    }
 
-//    if(bTranslationLoaded)
-//        app.installTranslator(&translator);
-//    else
-//        QMessageBox::warning(0, "Translation", "Not loaded");
+    if(bTranslationLoaded)
+        app.installTranslator(&translator);
+    else
+        QMessageBox::warning(0, "Translation", "Not loaded");
 
     MainWindow *w = new MainWindow;
     w->show();

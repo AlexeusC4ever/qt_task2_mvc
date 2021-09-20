@@ -14,3 +14,5 @@ pause
 cmake --build .
 
 pause
+
+cmake --build .
