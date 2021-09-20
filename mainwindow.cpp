@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-#include "./build/ui_mainwindow.h"
+#include "ui_mainwindow.h"
 #include <QtWidgets>
 
 namespace
@@ -10,11 +10,18 @@ namespace
     }
 }
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget *parent):
+        QMainWindow(parent),
+        ui(new Ui::MainWindow),
+        m_nWindows(1), m_OwnWindowsCounter(1)
 {
     ui->setupUi(this);
+
+    m_pLabelNumWindows = new QLabel;
+    statusBar()->addWidget(m_pLabelNumWindows, 1);
+
+    updateStatusBar();
+
 
     for(int i = 0; i < enMaxRecentFiles; ++ i)
     {
@@ -29,17 +36,23 @@ MainWindow::MainWindow(QWidget *parent)
     m_pActionSeparator = ui->menu1->addSeparator();
     m_pActionSeparator->setVisible(false);
 
-    m_pLabelFileName = new QLabel;
-    statusBar()->addWidget(m_pLabelFileName, 1);
-
     connect(ui->actionOpenFile, SIGNAL(triggered()), this, SLOT(open()));
 
     QAction *actionExit = new QAction(this);
     actionExit->setText(tr("Выход"));
     ui->menu1->addAction(actionExit);
-    connect(actionExit, SIGNAL(triggered()), qApp, SLOT(closeAllWindows()));
+    connect(actionExit, SIGNAL(triggered()), this, SLOT(close()));
+
+    setAttribute(Qt::WA_DeleteOnClose);
 }
 
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    event->accept();
+
+    --m_nWindows;
+    updateAllNumWindows();
+}
 
 void MainWindow::readXmlFile(const QString &rcFileName)
 {
@@ -65,7 +78,7 @@ void MainWindow::readXmlFile(const QString &rcFileName)
 
     m_TreeModel = new TreeModel(ui->treeView2);
     m_TreeModel->setRoot(rootItem);
-    m_TreeModel->insertColumn(1);
+//    m_TreeModel->insertColumns(1, 1, QModelIndex());
     while(!reader.atEnd())
     {
         QVector<QVariant> sl;
@@ -83,6 +96,8 @@ void MainWindow::readXmlFile(const QString &rcFileName)
                 QVector<QVariant> strAttrs;
                 QXmlStreamAttribute attr = attributes[i];
                 strAttrs << attr.name().toString();
+                QString strAttr = "attribute(" + strAttrs[0].toString() + ")";
+                strAttrs[0] = strAttr;
                 strAttrs << attr.value().toString();
                 TreeItem *attrItem = new TreeItem(strAttrs, item);
                 item->appendChild(attrItem);
@@ -180,18 +195,7 @@ void MainWindow::openRecentFile()
 {
     QAction *pAction = qobject_cast<QAction *>(sender());
     if(pAction)
-    {
-        QString fileName = pAction->data().toString();
-        Window* newWindow = new Window(fileName, this);
-        m_pWindows.emplace_back(newWindow);
-        newWindow->show();
-
-        QAction *windowOpened = new QAction(this);
-        windowOpened->setText(fileName);
-        ui->menu_2->addAction(windowOpened);
-
-        connect(windowOpened, SIGNAL(triggered()), newWindow, SLOT(raise()));
-    }
+        loadFile(pAction->data().toString());
 }
 
 
@@ -225,10 +229,26 @@ void MainWindow::updateRecentFileActions()
 void MainWindow::updateStatusBar()
 {
     QString strLabel;
-
-    m_pLabelFileName->setText(m_fileName);
-
+    strLabel = QString(tr("%1 windows")).arg(m_nWindows);
+    m_pLabelNumWindows->setText(strLabel);
 }
+
+void MainWindow::setNumWindows(int nWindows)
+{
+    m_nWindows = nWindows;
+    updateStatusBar();
+}
+
+void MainWindow::updateAllNumWindows()
+{
+    foreach(QWidget *pWidget, QApplication::topLevelWidgets())
+    {
+        if(MainWindow *pMainWindow =
+                qobject_cast<MainWindow *>(pWidget))
+            pMainWindow->setNumWindows(m_nWindows);
+    }
+}
+
 
 MainWindow::~MainWindow()
 {
@@ -258,7 +278,29 @@ void MainWindow::on_buttonStartEl_clicked()
     TreeItem* childItem = new TreeItem(name, item);
     item->appendChild(childItem);
 
-//    m_TreeModel->insertRow(item->childCount(), index);
-    ui->treeView2->expand(index);
+//    ui->treeView2->expand(index);
+}
+
+
+void MainWindow::on_actionNew_triggered()
+{
+    MainWindow *pMainWindow = new MainWindow;
+    QString strWindow = QString(tr("Window %1").arg(m_OwnWindowsCounter));
+    ++m_OwnWindowsCounter;
+    QAction *newWindow = new QAction(this);
+    newWindow->setText(strWindow);
+    ui->menu_2->addAction(newWindow);
+
+    connect(newWindow, SIGNAL(triggered()), pMainWindow, SLOT(raise()));
+
+    ++m_nWindows;
+    updateAllNumWindows();
+    pMainWindow->show();
+}
+
+
+void MainWindow::on_actionCloseWindows_triggered()
+{
+    qApp->closeAllWindows();
 }
 

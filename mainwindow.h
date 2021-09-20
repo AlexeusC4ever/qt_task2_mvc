@@ -6,7 +6,6 @@
 #include <QStringList>
 #include "treeitem.h"
 #include "treemodel.h"
-#include "window.h"
 
 class QLabel;
 //class QScrollArea;
@@ -21,27 +20,29 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-protected:
-//    virtual void closeEvent(QCloseEvent *pEvent);
+    void closeEvent(QCloseEvent *event);
 
 private slots:
     void open();
     void openRecentFile();
-
     void on_buttonStart1Doc_clicked();
 
     void on_buttonStartEl_clicked();
 
+    void on_actionNew_triggered();
+
+    void on_actionCloseWindows_triggered();
+
 private:
     Ui::MainWindow *ui;
-    QLabel *m_pLabelFileName;
+    QLabel *m_pLabelNumWindows;
 
     enum{ enMaxRecentFiles = 5 };
-
-    QVector<Window*> m_pWindows;
+    int m_nWindows;
+    int m_OwnWindowsCounter;
     QAction *m_apActionsRecent[enMaxRecentFiles];
     QAction *m_pActionSeparator;
     QAction *m_pActionViewFile;
@@ -51,6 +52,8 @@ private:
     void loadFile(const QString &rcFileName);
     void updateRecentFileActions();
     void updateStatusBar();
+    void setNumWindows(int nWindows);
+    void updateAllNumWindows();
     void readXmlFile(const QString &rcFileName);
     void writeXmlFile(const QString &rcFileName);
 };

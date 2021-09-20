@@ -22,7 +22,9 @@ TreeModel::~TreeModel()
 bool TreeModel::setData(const QModelIndex &index, const QVariant &value,
              int role)
 {
-    return getItem(index)->setData(index.column(), value);
+    getItem(index)->setData(index.column(), value);
+    emit dataChanged(index, index);
+    return true;
 }
 
 bool TreeModel::setHeaderData(int section, Qt::Orientation orientation,
@@ -107,14 +109,25 @@ int TreeModel::rowCount(const QModelIndex &parent) const
 
 int TreeModel::columnCount(const QModelIndex &parent) const
 {
-    Q_UNUSED(parent);
-    return rootItem->columnCount();
+//    Q_UNUSED(parent);
+    return 2;
 }
 
 Qt::ItemFlags TreeModel::flags(const QModelIndex &index) const
 {
     if (!index.isValid())
         return Qt::NoItemFlags;
+
+    if(index.column() > 0)
+        return Qt::ItemNeverHasChildren |
+                Qt::ItemIsEditable |
+                QAbstractItemModel::flags(index);
+
+    TreeItem *item = getItem(index);
+    if(item->data(index.column()).toString().mid(0, 10) == "attribute(")
+        return Qt::ItemNeverHasChildren |
+                Qt::ItemIsEditable |
+                QAbstractItemModel::flags(index);
 
     return Qt::ItemIsEditable | QAbstractItemModel::flags(index);
 }

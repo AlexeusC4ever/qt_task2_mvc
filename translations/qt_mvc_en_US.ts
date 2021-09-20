@@ -39,138 +39,143 @@
         <translation>Window</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="88"/>
+        <location filename="../mainwindow.ui" line="92"/>
         <source>Справка</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="99"/>
+        <location filename="../mainwindow.ui" line="103"/>
         <source>О программе</source>
         <translation>About</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="104"/>
-        <location filename="../mainwindow.ui" line="109"/>
+        <location filename="../mainwindow.ui" line="108"/>
+        <location filename="../mainwindow.ui" line="113"/>
         <source>Открыть</source>
         <translation>Open</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="114"/>
-        <location filename="../mainwindow.cpp" line="38"/>
+        <location filename="../mainwindow.ui" line="118"/>
+        <location filename="../mainwindow.cpp" line="42"/>
         <source>Выход</source>
         <translation>Exit</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="119"/>
+        <location filename="../mainwindow.ui" line="123"/>
         <source>qwe</source>
         <translation>qwe</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="51"/>
-        <location filename="../mainwindow.cpp" line="125"/>
-        <location filename="../mainwindow.cpp" line="155"/>
+        <location filename="../mainwindow.ui" line="128"/>
+        <source>Создать</source>
+        <translation>Create a window</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="133"/>
+        <source>Закрыть все окна</source>
+        <translation>Close all windows</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="64"/>
+        <location filename="../mainwindow.cpp" line="140"/>
+        <location filename="../mainwindow.cpp" line="170"/>
         <source>Ошибка</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="52"/>
+        <location filename="../mainwindow.cpp" line="65"/>
         <source>Ошибка чтения файла</source>
         <translation>Reading file error</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="126"/>
+        <location filename="../mainwindow.cpp" line="141"/>
         <source>Ошибка записи в файла</source>
         <translation>Writing file error</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="147"/>
+        <location filename="../mainwindow.cpp" line="162"/>
         <source>Open File</source>
         <translation>Open File</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="149"/>
+        <location filename="../mainwindow.cpp" line="164"/>
         <source>XML files (*.xml)</source>
         <translation>XML files (*.xml)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="155"/>
+        <location filename="../mainwindow.cpp" line="170"/>
         <source>Расширение файла должно быть .xml</source>
         <translation>The file&apos;s extension must be .XML</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="176"/>
+        <location filename="../mainwindow.cpp" line="191"/>
         <source>File loaded</source>
         <translation>File loaded</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="232"/>
+        <source>%1 windows</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="288"/>
+        <source>Window %1</source>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>Window</name>
     <message>
-        <location filename="../window.ui" line="14"/>
         <source>MainWindow</source>
-        <translation>MainWindow</translation>
+        <translation type="vanished">MainWindow</translation>
     </message>
     <message>
-        <location filename="../window.ui" line="29"/>
         <source>StartDocument</source>
-        <translation>StartDocument</translation>
+        <translation type="vanished">StartDocument</translation>
     </message>
     <message>
-        <location filename="../window.ui" line="36"/>
         <source>EndDocument</source>
-        <translation>EndDocumen</translation>
+        <translation type="vanished">EndDocumen</translation>
     </message>
     <message>
-        <location filename="../window.ui" line="43"/>
         <source>StartElement</source>
-        <translation>StartElement</translation>
+        <translation type="vanished">StartElement</translation>
     </message>
     <message>
-        <location filename="../window.ui" line="50"/>
         <source>EndElement</source>
-        <translation>EndElement</translation>
+        <translation type="vanished">EndElement</translation>
     </message>
     <message>
-        <location filename="../window.ui" line="71"/>
         <source>О программе</source>
-        <translation>About</translation>
+        <translation type="vanished">About</translation>
     </message>
     <message>
-        <location filename="../window.ui" line="76"/>
-        <location filename="../window.ui" line="81"/>
         <source>Открыть</source>
-        <translation>Open</translation>
+        <translation type="vanished">Open</translation>
     </message>
     <message>
-        <location filename="../window.ui" line="86"/>
         <source>Выход</source>
-        <translation>Exit</translation>
+        <translation type="vanished">Exit</translation>
     </message>
     <message>
-        <location filename="../window.ui" line="91"/>
         <source>qwe</source>
-        <translation>qwe</translation>
+        <translation type="vanished">qwe</translation>
     </message>
     <message>
-        <location filename="../window.cpp" line="34"/>
-        <location filename="../window.cpp" line="118"/>
         <source>Ошибка</source>
-        <translation>Error</translation>
+        <translation type="vanished">Error</translation>
     </message>
     <message>
-        <location filename="../window.cpp" line="35"/>
         <source>Ошибка чтения файла</source>
-        <translation>Reading file error</translation>
+        <translation type="vanished">Reading file error</translation>
     </message>
     <message>
-        <location filename="../window.cpp" line="119"/>
         <source>Ошибка записи в файла</source>
-        <translation>Writing file error</translation>
+        <translation type="vanished">Writing file error</translation>
     </message>
     <message>
-        <location filename="../window.cpp" line="145"/>
         <source>File loaded</source>
-        <translation>File loaded</translation>
+        <translation type="vanished">File loaded</translation>
     </message>
 </context>
 </TS>

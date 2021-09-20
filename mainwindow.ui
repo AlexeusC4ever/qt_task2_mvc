@@ -82,6 +82,10 @@
     <property name="separatorsCollapsible">
      <bool>true</bool>
     </property>
+    <addaction name="actionNew"/>
+    <addaction name="separator"/>
+    <addaction name="actionCloseWindows"/>
+    <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="menu_3">
     <property name="title">
@@ -117,6 +121,16 @@
   <action name="actionqwe">
    <property name="text">
     <string>qwe</string>
+   </property>
+  </action>
+  <action name="actionNew">
+   <property name="text">
+    <string>Создать</string>
+   </property>
+  </action>
+  <action name="actionCloseWindows">
+   <property name="text">
+    <string>Закрыть все окна</string>
    </property>
   </action>
  </widget>

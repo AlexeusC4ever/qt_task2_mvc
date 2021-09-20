@@ -7,6 +7,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 REQUIRED Widgets Linguist Tools)
 
+include_directories (${PROJECT_SOURCE_DIR})
+include_directories (${PROJECT_BINARY_DIR})
+
 set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
@@ -16,9 +19,6 @@ set(PROJECT_SOURCES
         treeitem.cpp
         treemodel.cpp
         mainwindow.ui
-        window.ui
-        window.cpp
-        window.h
 )
 
 set(
@@ -26,8 +26,6 @@ set(
         main.cpp
         mainwindow.cpp
         mainwindow.ui
-		window.ui
-		window.cpp
 )
 
 set(
@@ -64,13 +62,11 @@ qt_wrap_cpp(
 	mainwindow.h
 	treeitem.h
 	treemodel.h
-	window.h
 	)
 	
 qt_wrap_ui(
 	UIC_WRAPPERS
 	mainwindow.ui
-	window.ui
 )	
 	
 add_executable(
@@ -84,7 +80,7 @@ add_executable(
 add_dependencies(
         qt_task2_mvc translations)
 
-target_link_libraries(qt_task2_mvc Qt6::Widgets)
+target_link_libraries(qt_task2_mvc PRIVATE Qt6::Widgets)
 
 
 #installation
@@ -127,4 +123,4 @@ get_filename_component(
 	
 install(
 	DIRECTORY "${QT_PATH}/plugins/platforms"
-	DESTINATION bin)	
+	DESTINATION bin)
