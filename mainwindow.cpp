@@ -278,7 +278,7 @@ void MainWindow::on_buttonStartEl_clicked()
     TreeItem* childItem = new TreeItem(name, item);
     item->appendChild(childItem);
 
-//    ui->treeView2->expand(index);
+    ui->treeView2->expand(index);
 }
 
 
